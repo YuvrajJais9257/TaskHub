@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+<%- include('header'); -%>
+<body>
+    <div class="box" id="heading">
+        <%= listTitle %>
+    </div>
+    <div class="box">
+        <% task.forEach((item, i) => { %>
+            <form action="/delete" method="post">
+                <div class="item">
+                    <input type="checkbox" name="checkbox" value="<%= item._id%>" id="task-checkbox-<%= i %>" onclick="toggleTask(this)" onChange="this.form.submit()">
+                    <label for="task-checkbox-<%= i %>">
+                        <p><%= item.name %></p>
+                    </label>
+                </div>
+                <input type="hidden" name="listName" value="<%= listTitle %>"></input>
+            </form>
+        <% }) %>
+
+        <form class="" action="/" method="post">
+            <input type="text" name="task" placeholder="New task" autocomplete="off">
+            <button type="submit" name="list" value="<%= listTitle %>">+</button>
+        </form> 
+    </div>
+    <script src="/app.js" async defer></script>
+</body>
+<%- include('footer'); -%>
+</html>
